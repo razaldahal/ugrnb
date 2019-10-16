@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header bg-light">
+                        <h5 class="card-title" style="font-weight: bold">Underground Cafe| Items Details</h5>
+                        </div>
+                            <div class="card-body table-full-width">
+                                <table class="table">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th scope="col">Id</th>
+                                            <th scope="col">Items</th>                                          
+                                            <th scope="col">Quantity</th>
+                                            <th scope="col">Price</th>
+                                            <th scope="col">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                       {% for item in items %}
+                                        <tr>
+                                            <th scope="row">{{items.id}}</th>
+                                            <td>{{item.items}}</td>
+                                            <td>{{item.quantity}}</td>
+                                            <td>{{item.price}}</td>
+                                            <td>                                            
+                                                <a href="#" data-toggle="modal" data-target="#{{item.id}}" class="delete" title="Delete" data-toggle="tooltip"><i class="fas fa-eye ml-3" style="color:blue"></i></a>
+                                                <a href="{% url 'update_items' item.id %}" class="edit" title="Edit" data-toggle="tooltip"><i class="fas fa-edit ml-3" style="color:Green"></i></a> 
+                                                <a href="{% url 'delete_items' item.id %}" class="delete" title="Delete" data-toggle="tooltip"><i class="fas fa-trash ml-3" style="color:red"></i></a>
+                                            </td>
+
+                                            <div class="modal fade" id="{{item.id}}" data-backdrop="static" data-keyboard="false">
+                                                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" style="width:360px;height: auto">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                          <h5 class="modal-title">Items Details</h5>
+                                                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                          </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <p style="font-weight: bold">Items: {{item.items}}</p>
+                                                            <p style="font-weight: bold">Quantity: {{item.quantity}}</p>
+                                                            <p style="font-weight: bold">Price: {{item.price}}</p>
+                                                        </div>
+                                                        <div class="modal-footer text-center">
+                                                            <button type="button" class="btn btn-danger centered" style="align-self:center" data-dismiss="modal">Close</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </tr>  
+                                        {% endfor %}
+                                    </tbody>
+                                </table> 
+                                <a class="btn btn-info btn-fill" style="margin-left: 40%" href="{% url 'add_items' %}">
+                                    Add items</a>                                 
+                            </div>
+                        </div>    
+                    </div>
+                <div class="col-md-2"></div>
+            </div>
+{% endblock %}

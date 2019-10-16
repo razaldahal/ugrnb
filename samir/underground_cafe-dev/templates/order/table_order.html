@@ -1,0 +1,433 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+<style>
+    .box {
+        border: 1px solid black;
+        height: auto;
+    }
+</style>
+
+<div class="container box">
+    <div class="row">
+        <div id="main_body" class="shadow-sm p-3 mb-0 bg-light rounded col-8" style="background-color: palegoldenrod">
+
+            <div class="row">
+                <div class="col-9 shadow-sm bg-white rounded" style="height:180px;">
+
+                    table here
+                </div>
+
+                <div class="col-3 shadow-sm bg-white rounded">
+                    <div class="row">
+
+                        <input type="submit" class="btn btn-primary btn-sm " name="change_table" value="Change Table "
+                            style="font-size: 12px;">
+
+                    </div>
+                    <div class="row">
+                        <input id="" type="button" class="btn btn-primary btn-sm mt-1" style="font-size: 15px;"
+                            name="add_item" data-target="#additem" value="Add Item">
+                    </div>
+                    <div class="row">
+                        <input type="button" class="btn btn-primary btn-sm mt-1" name="refresh" value="refresh"
+                            style="font-size: 15px;">
+                    </div>
+                    <div class="row">
+                        <button type="button" style="font-size: 15px;" class="btn btn-primary btn-sm mt-1 btn btn-4"
+                            data-toggle="modal" data-target="#myModal">Add table</button>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+    <!--  end div for menu like add table -->
+
+    <!-- Modal -->
+    <!--pop up model for add table form-->
+    <div class="row">
+        <div id="myModal" class="modal fade col-md-12" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
+                    style="width:500px;height: auto">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Table Management System</h5>
+                            <br>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-sm-12 overflow_auto">
+                                        <div class="card">
+                                            <div class="table-responsive">
+                                                <table class="table" id="mytable">
+                                                    <thead class="thead-dark">
+                                                        <tr>
+                                                            <th scope="col">Id</th>
+                                                            <th scope="col">Name</th>
+                                                            <th scope="col">Is Active</th>
+                                                            <th scope="col">Outlet | Zone</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        {% for list_tables in list_table %}
+                                                        <tr>
+                                                            <td>{{list_tables.id}}</td>
+                                                            <td>{{list_tables.name}}</td>
+
+
+
+
+
+
+
+                                                            {% if list_tables.is_active %}
+                                                            <td class="red">
+                                                                {% else %}
+                                                            <td class="green">
+
+
+
+                                                                {% endif %}
+                                                            </td>
+
+
+
+
+
+                                                            <td>{{list_tables.zone}}</td>
+                                                        </tr>
+                                                        {% endfor %}
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="row">
+                                            <div class="col-sm-3">
+                                                <button type="button" class="btn btn-info" data-toggle="modal"
+                                                    data-target="#tableModal">Add</button>
+                                                <div class="modal fade bd-example-modal" tabindex="-1" role="dialog"
+                                                    aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog modal-lg">
+                                                        <div class="modal-content">
+
+                                                            <!-- Modal Header -->
+
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-3">
+                                                <a class="btn btn-info btn-fill" href="#">
+                                                    update </a>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <a class="btn btn-info btn-fill" href="#">
+                                                    Delete </a>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <a class="btn btn-info btn-fill" href="#">
+                                                    Reset </a>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end of pop up model for add table form-->
+                        <div class="modal-footer text-center">
+
+                            <div id="tableModal" class="modal fade" role="dialog">
+                                <div class="modal-dialog">
+                                    <!-- Modal content-->
+                                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
+                                        style="width:500px;height: 550px; background:light green; padding-right: 20px;">
+                                        <div class="modal-content">
+                                            <div class="modal-body">
+                                                <div class="shadow-sm p-3 mb-5 bg-light rounded">
+                                                    <h3>Add Table Deta</h3>
+                                                    <!-- <input type="text" class="shadow-none p-2 mb-3 bg-white rounded"
+                                                        style="border-color: aliceblue" placeholder="Insert Table Name">
+                                                        <input type="text" class="shadow-none p-2 mb-3 bg-white rounded"
+                                                
+                                                    style="border-color: aliceblue" placeholder="Insert outlet/zone"> -->
+
+                                                    <form method="POST">
+                                                        {% csrf_token %}
+
+                                                        {{ form|crispy }}
+                                                        <input type="submit" name="submit" value="submit">
+
+                                                    </form>
+                                                </div>
+                                            </div>
+
+                                            <div class="modal-footer text-center">
+                                                <button style="margin-left: 900px;" type="button"
+                                                    class="btn btn-info btn-sm" data-toggle="modal"
+                                                    data-target="#tableModal">Insert</button>
+                                                <button type="button" class="btn btn-danger centered"
+                                                    style="align-self:center" data-dismiss="modal">Close</button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                            <button type="button" class="btn btn-danger centered" style="align-self:center"
+                                data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- div having search options -->
+
+
+    <!--  end of div table having search options -->
+
+    <!-- menu item side bar -->
+
+    <div class="row border border-red ml-3">
+        <div class="col-md-12  mt-1  bg-warning shadow-sm bg-white rounded">
+            <input style=" height: 30px; margin-top: 5px;" type="text" class="shadow-none p-2 mb-3 bg-white rounded"
+                name="select_table" placeholder="select table">
+            <input type="text" class="shadow-none p-2 mb-3 bg-white rounded" name="search_code"
+                placeholder="search by code" style="height: 30px;">
+            <input type="text" style="height: 30px;" class="shadow-none p-2 mb-3 bg-white rounded" name="search_name"
+                placeholder="search by name">
+            <input type="button" class="btn btn-info btn-sm mb-2" name="delete" value="delete">
+        </div>
+    </div>
+
+
+    <!-- <div class="item_sidebar shadow-sm p-3 mb-5 bg-white rounded col-4">
+            <select style="margin-top: 7px;" class="shadow-none p-2 mb-3 bg-white rounded">
+                <option>veg</option>
+                <option>chicken</option>
+            </select>
+        </div> -->
+
+
+
+
+
+
+
+
+
+    <div class="row border border-red w-75 ">
+
+        <div class="col-4  shadow-sm  mb-1 bg-white rounded border border-black"
+            style="width: 220px; height: 200px; background: #000;">
+            <select>
+                <option>veg</option>
+                <option>chicken</option>
+
+            </select>
+        </div>
+        <div class="col-8 bg-danger shadow-sm mb-1 bg-white rounded">
+
+            ngghghgj
+        </div>
+
+    </div>
+
+
+
+
+    <!--  end menu item side bar  -->
+
+
+
+    <!-- start of account div -->
+    <div class="row">
+        <div class="start_account_di col-3 ml-auto"
+            style="background-color: lightblue; height: auto; margin-top: -470px;">
+
+            <!-- start of top nav bar     -->
+            <div class="topnav">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <a class="navbar-brand" href="#">Dine in</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav">
+                            <li class="nav-item active">
+                                <a class="nav-link" href="#">Take away <span class="sr-only">(current)</span></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Home delivery</a>
+                            </li>
+
+
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+            <!-- end of top navbar -->
+            <!-- start kot billing nav bar -->
+            <div class="row">
+                <div style="height: 30px; width:auto;">
+
+
+                    <b><a href="#news" style="margin-left:30px;">KOT</a></b>
+                    <b><a href="#kot" style="margin-left:50px;">billing</a></b>
+
+
+
+                </div>
+            </div>
+            <!-- end of kot nav bar -->
+
+
+            <!-- start of table -->
+            <div class="row ml-5">
+                <div style="border:1px red; height:30px; background:lavender; margin-bottom: auto;text-align:right">
+                    <span>
+                        <label>KOT kot no</label>
+                        <input type="text" style="width:50px;height: 30px; margin-left: 40px;" name=table_name_bil
+                            class="shadow-none p-1 mb-1 bg-white rounded" ;>
+                    </span>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="table-responsive">
+                                    <table class="table" id="mytable">
+                                        <thead class="thead-dark">
+                                            <tr>
+                                                <th scope="col">Item</th>
+                                                <th scope="col">Quantity</th>
+                                                <th scope="col">amount</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>1</td>
+                                                <td>red</td>
+
+                                                <td>cafe</td>
+                                            </tr>
+                                            <tr>
+                                                <td>2</td>
+                                                <td>green</td>
+
+                                                <td>cafe</td>
+                                            </tr>
+                                            <tr>
+                                                <td>3</td>
+                                                <td>blue</td>
+
+
+                                                <td>cafe</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="row">
+
+                    <div class="shadow-sm p-1 mb-1 bg-white rounded col-12"
+                        style=" height:auto; width:500px; margin-left:auto; margin-top:autopx;border: 1px black;">
+                        <label>client
+                            <span class="inline">
+                                <!-- <input type="text" class="customer_div" name="customer_name" style="border-radius: 4px;"> -->
+
+                                <input type="number" class="customer_div glyphicon glyphicon-user"
+                                    name="customer_number" style="width: 85px; height:24px; border-radius: 4px;">
+                        </label>
+                        <label> show on bill
+                            <input type="checkbox" name="show_onbill">
+                        </label>
+                        </span>
+                        <span>
+                            <label>kot note
+                                <input type="text" name="kot_note"
+                                    style="width: 95px; height: 24px; border-radius: 4px;">
+                                <input type=submit name=submit value="clear KOT"
+                                    class="btn btn-secondary active btn-sm">
+
+                            </label>
+                        </span>
+
+                        <div style="height:30px; width:auto;">
+                            <label style="font-family: rosemary;color:black">Total Bill</label>
+                            <input type="number" name="total_bill" class="total_bill">
+                        </div>
+                        <span>
+                            <input type=submit id="print" name="print" value="print"
+                                class="btn btn-warning active btn-sm">
+                            <input type=submit id="print" name="save" value="save" class="btn btn-danger active btn-sm">
+                            <input type=submit style="margin: 2px; border-radius: 10px;" name="both"
+                                value="print & save" class="btn btn-secondary active btn-sm">
+                        </span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <!-- end of table -->
+
+    <!-- start of customer detail in bill div -->
+
+
+    <!-- end of customer detail in bill div -->
+
+
+
+
+
+
+    <!-- end of account div -->
+
+
+
+    {% endblock content %}
+
+    {% block extrajs %}
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#mytable').DataTable();
+        });
+    </script>
+
+    {% endblock %}

@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card" style="margin-left:120px">
+                    <div class="card-header bg-light">
+                        <h5 class="card-title" style="font-weight: bold">Underground Cafe| User Details</h5>
+                        </div>
+                            <div class="card-body table-full-width">
+                                {% for message in messages %}
+                                    <p style="font-weight: bold" class="text-success">{{message}}</p>
+                                {% endfor %}
+                                <table class="table">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th scope="col">Id</th>
+                                            <th scope="col">Full Name</th>                                          
+                                            <th scope="col">Address</th>
+                                            <th scope="col">Email</th>                                          
+                                            <th scope="col">Phone</th>
+                                            <th scope="col">Username</th>
+                                            <th scope="col">Post</th>
+                                            <th scope="col">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                       {% for user in users %}
+                                        <tr>
+                                            <th scope="row">{{user.id}}</th>
+                                            <td>{{user.full_name}}</td>
+                                            <td>{{user.address}}</td>
+                                            <td>{{user.email}}</td>
+                                            <td>{{user.phone_no}}</td>
+                                            <td>{{user.username}}</td>
+                                            {% if user.is_staff %}
+                                            <td>Staff</td>
+                                            {% endif %}
+                                            {% if user.is_manager %}
+                                            <td>Manager</td>
+                                            {% endif %}
+                                            {% if user.is_customer %}
+                                            <td>Customer</td>
+                                            {% endif %}
+
+                                            {% if user.is_cashier %}
+                                            <td>Cashier</td>
+                                            {% endif %}
+                                            <td>                                            
+                                                <a href="#" data-toggle="modal" data-target="#{{user.id}}" class="delete" title="Delete" data-toggle="tooltip"><i class="fas fa-eye ml-3" style="color:blue"></i></a>
+                                                <a href="{% url 'update_user' user.id %}" class="edit" title="Edit" data-toggle="tooltip"><i class="fas fa-edit ml-3" style="color:Green"></i></a>
+                                                <a href="{% url 'delete_user' user.id %}" class="delete" title="Delete" data-toggle="tooltip"><i class="fas fa-trash ml-3" style="color:red"></i></a>
+                                            </td>
+
+                                            <div class="modal fade" id="{{user.id}}" data-backdrop="static" data-keyboard="false">
+                                                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" style="width:360px;height: auto">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                          <h5 class="modal-title">user Details</h5>
+                                                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                          </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <p style="font-weight: bold">Name: {{user.name}}</p>
+                                                            <p style="font-weight: bold">Full Name: {{user.full_name}}</p>                                                           
+                                                            <p style="font-weight: bold">Address: {{user.address}}</p>
+                                                            <p style="font-weight: bold">EMail: {{user.email}}</p>
+                                                            <p style="font-weight: bold">Phone No: {{user.phone_no}}</p>
+                                                            <p style="font-weight: bold">Username: {{user.usernames}}</p>
+                                                        </div>
+                                                        <div class="modal-footer text-center">
+                                                            <button type="button" class="btn btn-danger centered" style="align-self:center" data-dismiss="modal">Close</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </tr>  
+                                        {% endfor %}
+                                    </tbody>
+                                </table> 
+                                <a class="btn btn-info btn-fill" style="margin-left: 40%" href="{% url 'add_user' %}">
+                                    Add user</a>                                 
+                            </div>
+                        </div>    
+                    </div>
+                </div>
+            </div>
+{% endblock %}

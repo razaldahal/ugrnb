@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header bg-light">
+                        <h5 class="card-title" style="font-weight: bold">Underground Cafe| KOT Details</h5>
+                        </div>
+                            <div class="card-body table-full-width">
+                                <table class="table">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th scope="col">Id</th>
+                                            <th scope="col">Order By</th>                                          
+                                            <th scope="col">Items</th>
+                                            <th scope="col">Quantity</th>
+                                            <th scope="col">KOT Status</th>
+                                            <th scope="col">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                       {% for orderitem in orderitems %}
+                                        <tr>
+                                            <th scope="row">{{orderitem.id}}</th>
+                                            <td>{{orderitem.orderby}}</td>
+                                            <td>{{orderitem.orderitems}}</td>
+                                            <td>{{orderitem.quantity}}</td>
+                                            <td>
+                                                <select style="border-radius:25px;" id="select">
+                                                    <option value= "pending">{{orderitem.kotstatus}}</option>
+                                                    <option value="served">pass</option>
+                                                </select>
+                                            </td>
+                                            <td> <a href="{% url 'updatekot' orderitem.id %}" class="edit" title="Edit" data-toggle="tooltip"><i class="fas fa-edit ml-3" style="color:Green"></i></a>              </td>   
+                                        </tr>  
+                                        {% endfor %}
+                                    </tbody>
+                                </table> 
+                                <a class="btn btn-info btn-fill" style="margin-left: 40%" href="{% url 'add_orders' %}">
+                                    Add items</a>                                 
+                            </div>
+                        </div>    
+                    </div>
+                <div class="col-md-2"></div>
+            </div>
+{% endblock %}

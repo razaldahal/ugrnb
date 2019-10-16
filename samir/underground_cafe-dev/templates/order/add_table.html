@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+
+
+
+
+
+
+
+<table>
+	<tr>
+		<th>amt</th>
+		<th>amt</th>
+	</tr>
+	{% for list_tables in list_table %}
+	<tr>
+		<td>{{list_tables.id}}
+		<td>{{list_tables.name}}</td>
+
+		{% endfor %}
+
+</table>
+
+
+
+
+
+</table>
+
+
+
+
+{% endblock %}

@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="container">
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal">Seat</button>
+
+    <div class="modal fade bd-example-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header bg-primary  mb-3">
+                    <h3 class="col-11 model-title text-center"> Seat Details </h3>
+                    <button type="button" class="close" data-dismiss="modal">×</button>
+                </div>
+
+
+
+                <div class="modal-body">
+
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="card">
+                                <div class="card-body">
+                                    <form method="POST" class="post-form" enctype="multipart/form-data">
+                                        <div class="form-group">
+                                            <fieldset class="form-group">
+                                                {% csrf_token %}
+                                                {{form | crispy}}
+                                            </fieldset>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-8">
+                            <div class="card">
+                                <div class="table-responsive">
+                                    <table class="table" id="mytable">
+                                        <thead class="thead-dark">
+                                            <tr>
+                                                <th scope="col">Id</th>
+                                                <th scope="col">Name</th>
+                                                <th scope="col">Zone Name</th>
+                                                <th scope="col">Table name</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <!-- {% for outlet in outlets %}
+                                            <tr>
+                                                <th scope="row">{{seat.id}}</th>
+                                                <td>{{seat.name}}</td>
+                                                <td>{{seat.table.zone.name}}</td>
+                                                <td>{{seat.table.name}}</td>
+                                            </tr>  
+                                        {% endfor %} -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <a class="btn btn-info btn-fill" style="margin-left: 20px;" href="#">
+                                        Add </a>
+                                </div>
+                                <div class="col-sm-3">
+                                    <a class="btn btn-info btn-fill" href="#">
+                                        update </a>
+                                </div>
+                                <div class="col-sm-3">
+                                    <a class="btn btn-info btn-fill" href="#">
+                                        Delete </a>
+                                </div>
+                                <div class="col-sm-3">
+                                    <a class="btn btn-info btn-fill" href="#">
+                                        Reset </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
+
+
+{% block extrajs %}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#mytable').DataTable();
+    });
+</script>
+
+{% endblock %}

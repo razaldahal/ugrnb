@@ -1,0 +1,277 @@
+
+#menu_button 
+{
+    margin-left:  100px; 
+    margin-top: 10px;
+
+
+
+
+}
+.search_div
+{
+
+    border: 1px; 
+    height: 60px;
+     width: 700px;
+      margin-left:-19px;
+       margin-top: -30px;
+        box-shadow: 4px 4px;
+         border-radius: 5px;
+}
+
+#modal_box
+{
+    margin-left:580px;
+     margin-top: 10px;
+
+
+}
+.item_sidebars
+{
+
+    box-shadow: 5px 10px #888888;
+    height:300px;
+     width: 200px; 
+     margin-top: 100px;
+    
+}
+.item_sidebar
+{
+
+    
+    
+border: 1px;
+border-color: black;
+  
+     margin-top: 17px;
+     height: 300px; 
+     width:470px;
+      margin-left: 220px;
+}
+.start_account_div
+{
+   
+     margin-left: 700px;
+     height: auto;
+      margin-top: -670px;
+       width:auto;
+       background-color: gray;
+
+
+
+}
+}
+.topnav
+{
+    border: 1px;
+    box-shadow: 1px 1px 1px 1px gray;
+    height: 30px; width: auto;
+     font-family: rosemary;
+     background-color:lavender;
+
+
+}
+.customer_div
+{
+    width: 65px;
+     height: 24px;
+
+}
+.total_bill
+{
+
+
+    width: 85px;
+     height:24px;
+      margin-left:30px;
+       border-radius: 7px;
+}
+
+#main_body
+{
+
+    border: 1px solid black;
+     height: 220px;
+      width: 700px;
+       margin-top:3px;
+}
+
+#print
+{
+    margin:2px; 
+    border-radius: 10px;
+
+
+
+
+}
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #dddddd;
+  }
+  div.ex1 {
+    background-color: lightblue;
+    width: 110px;
+    height: 110px;
+    overflow: scroll;
+  }
+  .add_table
+  {
+
+height: 200px;
+     width: 150px; 
+      background-color:
+       black;
+       margin-left: auto; 
+       margin-top:-250px;
+  }
+  .client
+  {
+
+
+  height:auto; width:500px; margin-left:auto; margin-top:autopx;border: 1px black;
+  }
+  .kot_note
+  {
+ width: 95px; height: 24px; border-radius: 4px;
+  }
+  .total_bill
+  {
+width: 95px; height: 24px; border-radius: 4px;
+  }
+  .print_save
+  {
+
+    margin: 2px; border-radius: 10px;
+  }
+  .select_table
+  {
+
+
+   margin-right: 12px; height: 30px; margin-top: 5px;
+  }
+  .table_list
+  {
+
+    height: 200px; width:500px;
+  }
+  .modal_div
+  {
+  width:500px;height: 450px; background:light green; padding-right: 20px;
+  }
+  .change_table
+  {
+
+    margin-left: 3px; margin-top:2spx;
+  }
+  .add_item
+  {
+
+   margin-left: 30px; margin-top: 10px;
+  }
+  .refresh
+  {
+
+    margin-left: 40px; margin-top: 10px;
+  }
+  .add_table
+  {
+    margin-left: 38px; margin-top: 10px;
+  }
+  .menu_button
+  {
+
+  height: 200px; width: 150px;margin-left: auto; margin-top:-250px;
+  }
+  .modal_content
+  {
+
+width:500px;height: 450px; background:light green; padding-right: 20px;
+  }
+  .start_table
+  {
+
+border:1px red; height:30px; background:lavender; margin-bottom: auto;text-align:right;
+  }
+  .kot_no
+  {
+width:50px;height: 30px; margin-left: 30px;
+  }
+  body {
+    margin: 5px;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  
+  .topnav {
+    overflow: hidden;
+    background-color: #333;
+  }
+  
+  .topnav a {
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+  }
+  
+  .topnav a:hover {
+    background-color: #ddd;
+    color: black;
+  }
+  
+  .topnav a.active {
+    background-color: #4CAF50;
+    color: white;
+  }
+
+  .top_menu
+  {
+
+
+   margin:40px; font-family: rosemary; font-size: 20px;
+  }
+
+
+
+
+.dot {
+  height: 25px;
+  width: 25px;
+  background-color:red;
+  border-radius: 50%;
+  display: inline-block;
+}
+.green
+{
+
+height: 25px;
+  width: 25px;
+ background-color:green;
+  border-radius: 50%;
+  display: inline-block;
+       margin: 27px;
+}
+.red
+{
+
+height: 25px;
+  width: 25px;
+ background-color:red;
+  border-radius: 50%;
+  display: inline-block;
+       margin: 27px;
+}
